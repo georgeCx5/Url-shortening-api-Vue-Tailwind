@@ -1,28 +1,32 @@
 <script>
+import { useMainStore } from '@/stores/main'
+import { mapStores } from 'pinia'
+
 import NavBtnVue from './components/NavBtn.vue';
 
 import logo from '@/assets/images/logo.svg?url'
 import iconHamburger from '@/assets/images/icon-hamburger.svg?url'
-// import illustration from '@/assets/images/illustration-working.svg?url'
 
 export default {
   data() {
     return {
       logo,
       iconHamburger,
-      // illustration,
       illustration: 'bg-[url(@/assets/images/illustration-working.svg?url)]',
       isNavOpen: false,
     }
   },
   components: {
     NavBtnVue,
+  },
+  computed: {
+    ...mapStores(useMainStore),
   }
 }
 </script>
 <template>
   <body class=" flex flex-col items-center text-neo-very-dark-blue font-poppins">
-    <header class=" relative w-full max-w-[425px] pt-10 overflow-hidden">
+    <header class=" relative w-full max-w-[425px] pt-10 pb-[168px] overflow-hidden">
       <nav class=" flex justify-between items-center mb-6 mx-6 select-none">
         <img :src="logo" alt="logo" draggable="false">
         <div @click="isNavOpen = !isNavOpen" class=" cursor-pointer">
@@ -61,7 +65,21 @@ export default {
         </div>
       </div>
     </header>
-    <main class=" w-full max-w-[425px]">
+    <main class=" w-full max-w-[425px] bg-other-two">
+      <section class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 p-6 bg-neo-dark-violet rounded-[10px]">
+        <div class=" flex flex-col items-start gap-1 w-full">
+          <input @blur="mainStore.checkInputLength()" @keydown="mainStore.isValidUrl = true"
+            :class="` w-full h-[48px] px-4 ${mainStore.getPlaceholderColor} placeholder:text-opacity-50 focus:outline-none border-neo-red rounded-[5px]`"
+            type="url" placeholder="Shorten a link here..." v-model="mainStore.urlValue">
+          <p v-show="!mainStore.isValidUrl"
+            class=" text-neo-red text-[12px] leading-[18px] italic font-medium tracking-[.08px] ">
+            Please add a link</p>
+        </div>
+        <button @click="mainStore.checkTextValue()"
+          class=" w-full h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px]">
+          Shorten It!
+        </button>
+      </section>
     </main>
   </body>
 </template>
