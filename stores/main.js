@@ -2,16 +2,19 @@ import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
-    urlValue: '',
+    urlValue: null,
     shortValue: null,
     isValidUrl: true,
-    urlRgx: new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi),
+    urlRgx: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi,
     linksData: [
     ]
   }),
   getters: {
     getPlaceholderColor() {
       return this.isValidUrl ? 'placeholder:text-neo-very-dark-blue' : 'placeholder:text-neo-red border-[3px]'
+    },
+    getReversedLinks() {
+      return this.linksData.slice().reverse()
     }
   },
   actions: {
@@ -21,8 +24,8 @@ export const useMainStore = defineStore('main', {
       }
     },
     async checkTextValue() {
-      if (this.urlRgx.test(this.urlValue)) {
-        this.isValidUrl = true
+      const newRgx = new RegExp(this.urlRgx)
+      if (newRgx.test(this.urlValue)) {
         await this.SetNewLink()
         this.linksData.push(
           {
@@ -31,15 +34,14 @@ export const useMainStore = defineStore('main', {
             btnText: 'Copy'
           }
         )
-        this.shortValue = '';
-        this.urlValue = ''
+        this.isValidUrl = true
+        this.shortValue = null
+        this.urlValue = null
       } else {
         this.isValidUrl = false
       }
     },
     async SetNewLink() {
-      // await navigator.clipboard.writeText(this.urlValue.value);
-      // let datos = await fetch('https://api.shrtco.de/v2/shorten?url=example.org/very/long/link.html');
       let response = await fetch(`https://api.shrtco.de/v2/shorten?url=${this.urlValue}`);
       response = await response.json();
       this.shortValue = response.result.full_short_link;

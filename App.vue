@@ -70,7 +70,7 @@ export default {
     <main class=" w-full max-w-[425px] bg-other-two">
       <section class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 p-6 bg-neo-dark-violet rounded-[10px]">
         <div class=" flex flex-col items-start gap-1 w-full">
-          <input @blur="mainStore.checkInputLength()" @keydown="mainStore.isValidUrl = true"
+          <input
             :class="` w-full h-[48px] px-4 ${mainStore.getPlaceholderColor} placeholder:text-opacity-50 focus:outline-none border-neo-red rounded-[5px]`"
             type="url" placeholder="Shorten a link here..." v-model="mainStore.urlValue">
           <p v-show="!mainStore.isValidUrl"
@@ -82,17 +82,17 @@ export default {
           Shorten It!
         </button>
       </section>
-      <section v-for="(item, index) in mainStore.linksData" class=" flex flex-col gap-6 w-full px-6">
+      <section v-for="(item, index) in mainStore.getReversedLinks" class=" flex flex-col gap-6 w-full px-6">
         <div
-          class=" relative flex flex-col gap-3 bg-white mb-6 pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px] overflow-hidden">
-          <p>
+          class=" relative flex flex-col gap-3 bg-white mb-6 pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px]">
+          <p class=" w-full h-9 overflow-hidden">
             {{ item.value }}
           </p>
           <div class=" absolute left-0 top-12 w-full h-[1px] bg-neo-grayish-violet bg-opacity-25"></div>
           <a class=" text-neo-cyan" :href="item.shortenValue" target="_blank" rel="noopener noreferrer">
             {{ item.shortenValue }}</a>
           <button
-            class=" w-full h-10 bg-neo-cyan text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]">
+            class=" w-full h-10 bg-neo-cyan hover:bg-other-one text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]">
             {{ item.btnText }}
           </button>
         </div>
