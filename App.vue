@@ -2,7 +2,8 @@
 import { useMainStore } from '@/stores/main'
 import { mapStores } from 'pinia'
 
-import NavBtnVue from './components/NavBtn.vue';
+import NavBtn from './components/NavBtn.vue';
+import Features from './components/Features.vue';
 
 import logo from '@/assets/images/logo.svg?url'
 import iconHamburger from '@/assets/images/icon-hamburger.svg?url'
@@ -17,7 +18,8 @@ export default {
     }
   },
   components: {
-    NavBtnVue,
+    NavBtn,
+    Features,
   },
   computed: {
     ...mapStores(useMainStore),
@@ -34,12 +36,12 @@ export default {
         </div>
         <div v-show="isNavOpen" class=" absolute top-24 left-0 flex flex-col items-center w-full bg-transparent">
           <div class=" flex flex-col items-center gap-8 w-[87.2%] py-10 bg-neo-dark-violet rounded-[10px]">
-            <NavBtnVue btn-text="Features" />
-            <NavBtnVue btn-text="Pricing" />
-            <NavBtnVue btn-text="Resources" />
+            <NavBtn btn-text="Features" />
+            <NavBtn btn-text="Pricing" />
+            <NavBtn btn-text="Resources" />
             <div class=" w-[85.3%] h-[1px] bg-neo-grayish-violet"></div>
             <div class=" flex flex-col items-center gap-6">
-              <NavBtnVue btn-text="Login" />
+              <NavBtn btn-text="Login" />
               <button
                 class=" w-[279px] h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[18px] leading-[27px] font-bold rounded-[28px]">Sign
                 Up</button>
@@ -79,6 +81,22 @@ export default {
           class=" w-full h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px]">
           Shorten It!
         </button>
+      </section>
+      <section class=" w-full px-6">
+        <div class=" flex flex-col gap-4 mb-[90px] text-center">
+          <h2 class=" text-[28px] leading-[48px] tracking-[-.7px] font-bold">
+            Advanced Statistics</h2>
+          <p class=" text-neo-grayish-violet text-[16px] leading-[28px] tracking-[.11px] font-medium">
+            Track how your links are performing across the web with our
+            advanced statistics dashboard.
+          </p>
+        </div>
+        <div class=" relative flex flex-col gap-16 z-0">
+          <Features :data-index="0" />
+          <Features :data-index="1" />
+          <Features :data-index="2" />
+          <div class=" absolute flex self-center w-2 h-full bg-neo-cyan -z-10"></div>
+        </div>
       </section>
     </main>
   </body>
