@@ -82,6 +82,21 @@ export default {
           Shorten It!
         </button>
       </section>
+      <section v-for="(item, index) in mainStore.linksData" class=" flex flex-col gap-6 w-full px-6">
+        <div
+          class=" relative flex flex-col gap-3 bg-white mb-6 pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px] overflow-hidden">
+          <p>
+            {{ item.value }}
+          </p>
+          <div class=" absolute left-0 top-12 w-full h-[1px] bg-neo-grayish-violet bg-opacity-25"></div>
+          <a class=" text-neo-cyan" :href="item.shortenValue" target="_blank" rel="noopener noreferrer">
+            {{ item.shortenValue }}</a>
+          <button
+            class=" w-full h-10 bg-neo-cyan text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]">
+            {{ item.btnText }}
+          </button>
+        </div>
+      </section>
       <section class=" w-full px-6">
         <div class=" flex flex-col gap-4 mb-[90px] text-center">
           <h2 class=" text-[28px] leading-[48px] tracking-[-.7px] font-bold">
