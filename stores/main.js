@@ -47,9 +47,6 @@ export const useMainStore = defineStore('main', {
       response = await response.json();
       this.shortValue = response.result.full_short_link;
     },
-    setNewState(i) {
-      this.linksData[i].index = 'Copied!'
-    },
     async setCopyText(i) {
       let newArr = this.linksData.slice().reverse()
       await navigator.clipboard.writeText(newArr[i].shortenValue)

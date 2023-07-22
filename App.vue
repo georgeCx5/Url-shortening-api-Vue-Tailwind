@@ -4,6 +4,9 @@ import { mapStores } from 'pinia'
 
 import NavBtn from './components/NavBtn.vue';
 import Features from './components/Features.vue';
+import FooterLogo from './components/FooterLogo.vue';
+import FooterText from './components/FooterText.vue';
+import FooterNetworks from './components/FooterNetworks.vue';
 
 import logo from '@/assets/images/logo.svg?url'
 import iconHamburger from '@/assets/images/icon-hamburger.svg?url'
@@ -15,11 +18,16 @@ export default {
       iconHamburger,
       illustration: 'bg-[url(@/assets/images/illustration-working.svg?url)]',
       isNavOpen: false,
+      bgBoostMB: 'bg-[url(@/assets/images/bg-boost-mobile.svg?url)]',
+      bgBoostDT: 'DT:bg-[url(@/assets/images/bg-boost-desktop.svg?url)]',
     }
   },
   components: {
     NavBtn,
     Features,
+    FooterLogo,
+    FooterText,
+    FooterNetworks,
   },
   computed: {
     ...mapStores(useMainStore),
@@ -67,7 +75,7 @@ export default {
         </div>
       </div>
     </header>
-    <main class=" w-full max-w-[425px] bg-other-two">
+    <main class=" w-full max-w-[425px] DT:max-w-[1920px] bg-other-two">
       <section class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 p-6 bg-neo-dark-violet rounded-[10px]">
         <div class=" flex flex-col items-start gap-1 w-full">
           <input
@@ -91,7 +99,7 @@ export default {
           <div class=" absolute left-0 top-12 w-full h-[1px] bg-neo-grayish-violet bg-opacity-25"></div>
           <a class=" text-neo-cyan" :href="item.shortenValue" target="_blank" rel="noopener noreferrer">
             {{ item.shortenValue }}</a>
-          <button @click="mainStore.setCopyText(index), item.btnText = 'Copied'"
+          <button @click="mainStore.setCopyText(index), item.btnText = 'Copied!'"
             :class="` w-full h-10 ${mainStore.checkBtnText(item.btnText)} text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]`">
             <span>{{ item.btnText }}</span>
           </button>
@@ -113,6 +121,28 @@ export default {
           <div class=" absolute flex self-center w-2 h-full bg-neo-cyan -z-10"></div>
         </div>
       </section>
+      <section class=" flex flex-col items-center gap-4 w-full py-[90px] bg-neo-dark-violet text-white font-bold"
+        :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat bg-right`">
+        <h2 class=" text-[28px] leading-[48px] tracking-[-.7px]">
+          Boost your links today</h2>
+        <button class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-[20px] leading-[30px] rounded-[28px]">
+          Get Started
+        </button>
+      </section>
     </main>
+    <footer class=" flex flex-col gap-12 w-full max-w-[425px] py-14 bg-neo-very-dark-violet">
+      <FooterLogo class=" self-center" />
+      <div class=" flex flex-col items-center text-center gap-10">
+        <FooterText :data-index="0" />
+        <FooterText :data-index="1" />
+        <FooterText :data-index="2" />
+      </div>
+      <div class=" flex justify-center items-center gap-6">
+        <FooterNetworks :data-index="0" />
+        <FooterNetworks :data-index="1" />
+        <FooterNetworks :data-index="2" />
+        <FooterNetworks :data-index="3" />
+      </div>
+    </footer>
   </body>
 </template>
