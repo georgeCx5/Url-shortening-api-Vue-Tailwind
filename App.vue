@@ -38,13 +38,16 @@ export default {
 </script>
 <template>
   <body class=" flex flex-col items-center text-neo-very-dark-blue font-poppins">
-    <header class=" relative w-full max-w-[425px] pt-10 pb-[168px] overflow-hidden">
-      <nav class=" flex justify-between items-center mb-6 mx-6 select-none">
+    <header class=" relative w-full max-w-[425px] DT:max-w-[1920px] pt-10 DT:pt-12 mb-[168px] DT:mb-[145px] overflow-hidden">
+      <nav
+        class=" flex justify-between DT:justify-start items-center DT:gap-11 mb-6 DT:mb-[78px] mx-6 DT:mx-[165px] select-none">
         <img :src="logo" alt="logo" draggable="false">
-        <div @click="isNavOpen = !isNavOpen" class=" cursor-pointer">
+        <div @click="isNavOpen = !isNavOpen" class=" DT:hidden cursor-pointer">
           <img class=" w-6" :src="iconHamburger" alt="iconHamburger">
         </div>
-        <div v-show="isNavOpen" class=" absolute top-24 left-0 flex flex-col items-center w-full bg-transparent">
+        <!-- Nav Mobile -->
+        <div v-show="isNavOpen"
+          class=" absolute top-24 left-0 flex DT:hidden flex-col items-center w-full bg-transparent">
           <div class=" flex flex-col items-center gap-8 w-[87.2%] py-10 bg-neo-dark-violet rounded-[10px]">
             <NavBtn btn-text="Features" />
             <NavBtn btn-text="Pricing" />
@@ -59,14 +62,31 @@ export default {
             </div>
           </div>
         </div>
+        <!-- Nav Desktop -->
+        <div class=" hidden DT:flex justify-between w-full">
+          <div class=" flex gap-8">
+            <NavBtn btn-text="Features" />
+            <NavBtn btn-text="Pricing" />
+            <NavBtn btn-text="Resources" />
+          </div>
+          <div class=" flex gap-9">
+            <NavBtn btn-text="Login" />
+            <button
+              class="w-[105px] h-[40px] bg-neo-cyan hover:bg-other-one text-white text-[18px] DT:text-[15px] leading-[27px] DT:leading-[23px] font-bold rounded-[28px]">
+              Sign Up
+            </button>
+          </div>
+        </div>
       </nav>
-      <div class=" flex flex-col gap-9">
-        <div :class="`${illustration} w-[511px] h-[337px] ml-6 bg-cover`"></div>
-        <div class=" flex flex-col items-center gap-8 px-6">
-          <div class=" flex flex-col text-center gap-4">
-            <h1 class=" text-[42px] leading-[48px] tracking-[-1.05px] font-bold">
+      <div class=" flex flex-col DT:flex-row-reverse gap-9 DT:gap-[101px] DT:ml-[165px]">
+        <div :class="`${illustration} w-[511px] DT:w-[733px] h-[337px] DT:h-[482px] ml-6 DT:ml-0 bg-cover`"></div>
+        <div class=" flex flex-col items-center DT:items-start gap-8 DT:gap-[38px] DT:w-[54%] px-6 DT:px-0">
+          <div class=" flex flex-col text-center DT:text-left gap-4 DT:gap-[5px]">
+            <h1
+              class=" text-[42px] DT:text-[80px] leading-[48px] DT:leading-[90px] tracking-[-1.05px] DT:tracking-[-2px] font-bold">
               More than just shorter links</h1>
-            <p class=" text-neo-grayish-violet text-[18px] leading-[30px] tracking-[.12px] font-medium">
+            <p
+              class=" text-neo-grayish-violet text-[18px] DT:text-[22px] leading-[30px] DT:leading-[36px] tracking-[.12px] DT:tracking-[.15px] font-medium">
               Build your brand’s recognition and get detailed insights
               on how your links are performing.
             </p>
