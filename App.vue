@@ -18,6 +18,8 @@ export default {
       iconHamburger,
       illustration: 'bg-[url(@/assets/images/illustration-working.svg?url)]',
       isNavOpen: false,
+      bgShortenMB: 'bg-[url(@/assets/images/bg-shorten-mobile.svg?url)]',
+      bgShortenDT: 'DT:bg-[url(@/assets/images/bg-shorten-desktop.svg?url)]',
       bgBoostMB: 'bg-[url(@/assets/images/bg-boost-mobile.svg?url)]',
       bgBoostDT: 'DT:bg-[url(@/assets/images/bg-boost-desktop.svg?url)]',
     }
@@ -51,8 +53,9 @@ export default {
             <div class=" flex flex-col items-center gap-6">
               <NavBtn btn-text="Login" />
               <button
-                class=" w-[279px] h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[18px] leading-[27px] font-bold rounded-[28px]">Sign
-                Up</button>
+                class=" w-[279px] h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[18px] leading-[27px] font-bold rounded-[28px]">
+                Sign Up
+              </button>
             </div>
           </div>
         </div>
@@ -69,14 +72,16 @@ export default {
             </p>
           </div>
           <button
-            class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[28px]">
+            class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[28px] select-none">
             Get Started
           </button>
         </div>
       </div>
     </header>
     <main class=" w-full max-w-[425px] DT:max-w-[1920px] bg-other-two">
-      <section class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 p-6 bg-neo-dark-violet rounded-[10px]">
+      <section
+        class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 -mb-12 p-6 bg-neo-dark-violet rounded-[10px]"
+        :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat`">
         <div class=" flex flex-col items-start gap-1 w-full">
           <input
             :class="` w-full h-[48px] px-4 ${mainStore.getPlaceholderColor} placeholder:text-opacity-50 focus:outline-none border-neo-red rounded-[5px]`"
@@ -86,13 +91,13 @@ export default {
             Please add a link</p>
         </div>
         <button @click="mainStore.checkTextValue()"
-          class=" w-full h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px]">
+          class=" w-full h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px] select-none">
           Shorten It!
         </button>
       </section>
-      <section v-for="(item, index) in mainStore.getReversedLinks" class=" flex flex-col gap-6 w-full px-6">
-        <div
-          class=" relative flex flex-col gap-3 bg-white mb-6 pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px]">
+      <section class=" flex flex-col gap-6 w-full mb-20 px-6">
+        <div v-for="(item, index) in mainStore.getReversedLinks"
+          class=" relative flex flex-col gap-3 bg-white pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px]">
           <p class=" w-full h-9 overflow-hidden">
             {{ item.value }}
           </p>
@@ -105,7 +110,7 @@ export default {
           </button>
         </div>
       </section>
-      <section class=" w-full px-6">
+      <section class=" w-full mb-20 px-6">
         <div class=" flex flex-col gap-4 mb-[90px] text-center">
           <h2 class=" text-[28px] leading-[48px] tracking-[-.7px] font-bold">
             Advanced Statistics</h2>
@@ -114,7 +119,7 @@ export default {
             advanced statistics dashboard.
           </p>
         </div>
-        <div class=" relative flex flex-col gap-16 z-0">
+        <div class=" relative flex flex-col gap-[92px] z-0">
           <Features :data-index="0" />
           <Features :data-index="1" />
           <Features :data-index="2" />
@@ -125,7 +130,8 @@ export default {
         :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat bg-right`">
         <h2 class=" text-[28px] leading-[48px] tracking-[-.7px]">
           Boost your links today</h2>
-        <button class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-[20px] leading-[30px] rounded-[28px]">
+        <button
+          class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-[20px] leading-[30px] rounded-[28px] select-none">
           Get Started
         </button>
       </section>
