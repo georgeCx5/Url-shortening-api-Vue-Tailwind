@@ -81,7 +81,7 @@ export default {
       </nav>
       <div class=" flex flex-col DT:flex-row-reverse gap-9 DT:gap-[101px] DT:ml-[165px]">
         <div :class="`${illustration} w-[511px] DT:w-[733px] h-[337px] DT:h-[482px] ml-6 DT:ml-0 bg-cover`"></div>
-        <div class=" flex flex-col items-center DT:items-start gap-8 DT:gap-[38px] DT:w-[54%] px-6 DT:px-0">
+        <div class=" flex flex-col DT:justify-center items-center DT:items-start gap-8 DT:gap-[38px] DT:w-[54%] px-6 DT:px-0">
           <div class=" flex flex-col text-center DT:text-left gap-4 DT:gap-[5px]">
             <h1
               class=" text-[42px] DT:text-[80px] leading-[48px] DT:leading-[90px] tracking-[-1.05px] DT:tracking-[-2px] font-bold">
@@ -101,24 +101,25 @@ export default {
     </header>
     <main class=" w-full max-w-[425px] DT:max-w-[1920px] bg-other-two">
       <section
-        class=" relative top-[-80px] flex flex-col items-center gap-4 mx-6 -mb-12 p-6 bg-neo-dark-violet rounded-[10px]"
-        :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat`">
-        <div class=" flex flex-col items-start gap-1 w-full">
+        class=" relative top-[-80px] flex flex-col DT:flex-row items-center gap-4 DT:gap-6 DT:h-[168px] mx-6 DT:mx-[165px] -mb-12 p-6 DT:px-16 bg-neo-dark-violet rounded-[10px]"
+        :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat DT:bg-right-bottom`">
+        <div class=" DT:relative flex flex-col items-start gap-1 w-full">
           <input
-            :class="` w-full h-[48px] px-4 ${mainStore.getPlaceholderColor} placeholder:text-opacity-50 focus:outline-none border-neo-red rounded-[5px]`"
+            :class="` w-full h-12 DT:h-16 px-4 ${mainStore.getPlaceholderColor} text-[16px] DT:text-[20px] tracking-[.12px] DT:tracking-[.15px] placeholder:text-opacity-50 focus:outline-none border-neo-red rounded-[5px] DT:rounded-[10px]`"
             type="url" placeholder="Shorten a link here..." v-model="mainStore.urlValue">
           <p v-show="!mainStore.isValidUrl"
-            class=" text-neo-red text-[12px] leading-[18px] italic font-medium tracking-[.08px] ">
-            Please add a link</p>
+            class=" DT:absolute DT:top-[72px] text-neo-red text-[12px] DT:text-[16px] leading-[18px] italic font-medium tracking-[.08px] DT:tracking-[.11px] ">
+            Please add a link
+          </p>
         </div>
         <button @click="mainStore.checkTextValue()"
-          class=" w-full h-[48px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px] select-none">
+          class=" w-full DT:w-[188px] h-[48px] DT:h-[64px] bg-neo-cyan hover:bg-other-one text-white text-[20px] leading-[30px] font-bold rounded-[5px] DT:rounded-[10px] select-none">
           Shorten It!
         </button>
       </section>
-      <section class=" flex flex-col gap-6 w-full mb-20 px-6">
+      <section class=" flex flex-col gap-6 DT:gap-4 w-full mb-20 DT:mb-[120px] px-6 DT:px-[165px]">
         <div v-for="(item, index) in mainStore.getReversedLinks"
-          class=" relative flex flex-col gap-3 bg-white pt-[6px] pb-[16px] px-4 text-[16px] leading-[36px] tracking-[.12px] font-medium rounded-[5px]">
+          class=" relative flex flex-col gap-3 bg-white pt-[6px] pb-[16px] px-4 text-[16px] DT:text-[20px] leading-[36px] tracking-[.12px] DT:tracking-[.15px] font-medium rounded-[5px]">
           <p class=" w-full h-9 overflow-hidden">
             {{ item.value }}
           </p>
@@ -126,30 +127,32 @@ export default {
           <a class=" text-neo-cyan" :href="item.shortenValue" target="_blank" rel="noopener noreferrer">
             {{ item.shortenValue }}</a>
           <button @click="mainStore.setCopyText(index), item.btnText = 'Copied!'"
-            :class="` w-full h-10 ${mainStore.checkBtnText(item.btnText)} text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]`">
+            :class="` w-full h-10 ${mainStore.checkBtnText(item.btnText)} text-white text-[16px] DT:text-[15px] leading-[24px] DT:leading-[23px] tracking-[0px] font-bold rounded-[5px]`">
             <span>{{ item.btnText }}</span>
           </button>
         </div>
       </section>
-      <section class=" w-full mb-20 px-6">
-        <div class=" flex flex-col gap-4 mb-[90px] text-center">
-          <h2 class=" text-[28px] leading-[48px] tracking-[-.7px] font-bold">
+      <section class=" DT:flex DT:flex-col DT:gap-3 w-full mb-20 DT:mb-[120px] px-6 DT:px-[165px]">
+        <div class=" flex flex-col DT:self-center gap-4 DT:gap-[18px] DT:w-[48%] mb-[90px] text-center">
+          <h2 class=" text-[28px] DT:text-[40px] leading-[48px] tracking-[-.7px] DT:tracking-[-1px] font-bold">
             Advanced Statistics</h2>
-          <p class=" text-neo-grayish-violet text-[16px] leading-[28px] tracking-[.11px] font-medium">
+          <p
+            class=" text-neo-grayish-violet text-[16px] DT:text-[18px] leading-[28px] DT:leading-[32px] tracking-[.11px] DT:tracking-[.12px] font-medium">
             Track how your links are performing across the web with our
             advanced statistics dashboard.
           </p>
         </div>
-        <div class=" relative flex flex-col gap-[92px] z-0">
-          <Features :data-index="0" />
-          <Features :data-index="1" />
-          <Features :data-index="2" />
-          <div class=" absolute flex self-center w-2 h-full bg-neo-cyan -z-10"></div>
+        <div class=" relative flex flex-col DT:flex-row gap-[92px] DT:gap-[30px] DT:h-[350px] z-0">
+          <Features class=" self-start" :data-index="0" />
+          <Features class=" self-center" :data-index="1" />
+          <Features class=" self-end" :data-index="2" />
+          <div class=" absolute flex self-center w-2 DT:w-full h-full DT:h-2 bg-neo-cyan -z-10"></div>
         </div>
       </section>
-      <section class=" flex flex-col items-center gap-4 w-full py-[90px] bg-neo-dark-violet text-white font-bold"
+      <section
+        class=" flex flex-col items-center gap-4 DT:gap-8 w-full py-[90px] DT:py-14 bg-neo-dark-violet text-white font-bold"
         :class="`${bgBoostMB} ${bgBoostDT} bg-no-repeat bg-right`">
-        <h2 class=" text-[28px] leading-[48px] tracking-[-.7px]">
+        <h2 class=" text-[28px] DT:text-[40px] leading-[48px] tracking-[-.7px] DT:tracking-[-1px]">
           Boost your links today</h2>
         <button
           class=" w-[197px] h-[56px] bg-neo-cyan hover:bg-other-one text-[20px] leading-[30px] rounded-[28px] select-none">
@@ -161,7 +164,7 @@ export default {
       class=" flex flex-col DT:flex-row DT:justify-between DT:items-start gap-12 DT:gap-0 w-full max-w-[425px] DT:max-w-[1920px] py-14 DT:py-[72px] DT:px-[165px] bg-neo-very-dark-violet">
       <FooterLogo class=" self-center DT:self-start" />
       <div class=" flex flex-col DT:flex-row DT:justify-between DT:items-start gap-12 DT:w-[68%]">
-        <div class=" flex flex-col DT:flex-row items-center DT:items-start text-center gap-10 DT:gap-24">
+        <div class=" flex flex-col DT:flex-row items-center DT:items-start text-center DT:text-left gap-10 DT:gap-24">
           <FooterText :data-index="0" />
           <FooterText :data-index="1" />
           <FooterText :data-index="2" />
