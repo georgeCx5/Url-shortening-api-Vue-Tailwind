@@ -91,9 +91,9 @@ export default {
           <div class=" absolute left-0 top-12 w-full h-[1px] bg-neo-grayish-violet bg-opacity-25"></div>
           <a class=" text-neo-cyan" :href="item.shortenValue" target="_blank" rel="noopener noreferrer">
             {{ item.shortenValue }}</a>
-          <button
-            class=" w-full h-10 bg-neo-cyan hover:bg-other-one text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]">
-            {{ item.btnText }}
+          <button @click="mainStore.setCopyText(index), item.btnText = 'Copied'"
+            :class="` w-full h-10 ${mainStore.checkBtnText(item.btnText)} text-white text-[16px] leading-[24px] tracking-[0px] font-bold rounded-[5px]`">
+            <span>{{ item.btnText }}</span>
           </button>
         </div>
       </section>

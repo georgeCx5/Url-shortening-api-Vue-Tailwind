@@ -7,7 +7,8 @@ export const useMainStore = defineStore('main', {
     isValidUrl: true,
     urlRgx: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi,
     linksData: [
-    ]
+    ],
+    prueba: 'apagada',
   }),
   getters: {
     getPlaceholderColor() {
@@ -48,6 +49,13 @@ export const useMainStore = defineStore('main', {
     },
     setNewState(i) {
       this.linksData[i].index = 'Copied!'
+    },
+    async setCopyText(i) {
+      let newArr = this.linksData.slice().reverse()
+      await navigator.clipboard.writeText(newArr[i].shortenValue)
+    },
+    checkBtnText(text) {
+      return text == 'Copy' ? 'bg-neo-cyan hover:bg-other-one' : 'bg-neo-dark-violet'
     }
   }
 })
