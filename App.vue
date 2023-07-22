@@ -38,7 +38,8 @@ export default {
 </script>
 <template>
   <body class=" flex flex-col items-center text-neo-very-dark-blue font-poppins">
-    <header class=" relative w-full max-w-[425px] DT:max-w-[1920px] pt-10 DT:pt-12 mb-[168px] DT:mb-[145px] overflow-hidden">
+    <header
+      class=" relative w-full max-w-[425px] DT:max-w-[1920px] pt-10 DT:pt-12 mb-[168px] DT:mb-[145px] overflow-hidden">
       <nav
         class=" flex justify-between DT:justify-start items-center DT:gap-11 mb-6 DT:mb-[78px] mx-6 DT:mx-[165px] select-none">
         <img :src="logo" alt="logo" draggable="false">
@@ -156,18 +157,21 @@ export default {
         </button>
       </section>
     </main>
-    <footer class=" flex flex-col gap-12 w-full max-w-[425px] py-14 bg-neo-very-dark-violet">
-      <FooterLogo class=" self-center" />
-      <div class=" flex flex-col items-center text-center gap-10">
-        <FooterText :data-index="0" />
-        <FooterText :data-index="1" />
-        <FooterText :data-index="2" />
-      </div>
-      <div class=" flex justify-center items-center gap-6">
-        <FooterNetworks :data-index="0" />
-        <FooterNetworks :data-index="1" />
-        <FooterNetworks :data-index="2" />
-        <FooterNetworks :data-index="3" />
+    <footer
+      class=" flex flex-col DT:flex-row DT:justify-between DT:items-start gap-12 DT:gap-0 w-full max-w-[425px] DT:max-w-[1920px] py-14 DT:py-[72px] DT:px-[165px] bg-neo-very-dark-violet">
+      <FooterLogo class=" self-center DT:self-start" />
+      <div class=" flex flex-col DT:flex-row DT:justify-between DT:items-start gap-12 DT:w-[68%]">
+        <div class=" flex flex-col DT:flex-row items-center DT:items-start text-center gap-10 DT:gap-24">
+          <FooterText :data-index="0" />
+          <FooterText :data-index="1" />
+          <FooterText :data-index="2" />
+        </div>
+        <div class=" flex justify-center items-center gap-6">
+          <FooterNetworks :data-index="0" />
+          <FooterNetworks :data-index="1" />
+          <FooterNetworks :data-index="2" />
+          <FooterNetworks :data-index="3" />
+        </div>
       </div>
     </footer>
   </body>
